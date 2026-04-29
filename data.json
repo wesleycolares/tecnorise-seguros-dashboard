@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "fonte": "Gear Admin",
+    "banco": "gear_dev",
+    "empresa": "Tecnorise",
+    "data_extracao": "2026-04-28"
+  },
+  "base_plataforma": {
+    "total_moradores_cadastrados": 1564045,
+    "total_condominios_ativos": 6845,
+    "unidades_com_app_instalado": 253370,
+    "moradores_ativos_app_30d": 40160,
+    "veiculos_cadastrados": 110421
+  },
+  "completude_dados": {
+    "data_nascimento_pct": 96.8,
+    "foto_morador_pct": 67.4,
+    "celular_pct": 65.5,
+    "cpf_pct": 65.4,
+    "email_pct": 50.5
+  },
+  "pool_qualificado_seguros": {
+    "base_total": 1564045,
+    "cpf_mais_18meses": {
+      "total": 479747,
+      "percentual": 30.7
+    },
+    "cpf_mais_18meses_mais_email": {
+      "total": 293667,
+      "percentual": 18.8
+    }
+  },
+  "tempo_relacionamento": {
+    "mais_3_anos": { "total": 320000, "percentual": 20.5 },
+    "entre_18_36_meses": { "total": 443000, "percentual": 28.3 },
+    "entre_6_18_meses": { "total": 493000, "percentual": 31.5 },
+    "menos_6_meses": { "total": 308000, "percentual": 19.7 }
+  },
+  "faixa_etaria": {
+    "65_mais": { "percentual": 36.2 },
+    "50_64": { "percentual": 10.0 },
+    "35_49": { "percentual": 17.8 },
+    "25_34": { "percentual": 16.4 },
+    "ate_24": { "percentual": 16.4 },
+    "sem_dado": { "percentual": 3.2 },
+    "perfil_prioritario_35_65_anos": { "percentual": 27.8, "estimativa_moradores": 435000 }
+  },
+  "perfil_condominios": {
+    "popular_ate_30_unidades": { "total": 3209, "percentual": 47 },
+    "medio_31_100_unidades": { "total": 2964, "percentual": 43 },
+    "alto_padrao_mais_100_unidades": { "total": 672, "percentual": 10 },
+    "nota": "Estimativa baseada em porte (qtd de unidades ativas por condomínio)"
+  },
+  "distribuicao_geografica": {
+    "top_estados": [
+      { "estado": "SP", "condominios": 3076, "percentual_aprox": 45 },
+      { "estado": "RS", "condominios": 577, "percentual_aprox": 8 },
+      { "estado": "MG", "condominios": 241, "percentual_aprox": 4 },
+      { "estado": "RJ", "condominios": 195, "percentual_aprox": 3 },
+      { "estado": "CE", "condominios": 185, "percentual_aprox": 3 },
+      { "estado": "PE", "condominios": 110, "percentual_aprox": 2 }
+    ]
+  },
+  "status_dados_projeto": {
+    "veiculos_seguro_auto": { "status": "pronto", "completude_pct": 100, "detalhe": "110k veículos com placa, marca e modelo" },
+    "engajamento_app_dau_wau": { "status": "nao_existe", "completude_pct": 0, "acao": "Gerar tabela t_engajamento_app com eventos de sessão" },
+    "perfil_familiar_dependentes": { "status": "nao_existe", "completude_pct": 0, "acao": "Gerar campo num_dependentes via query em t_morador" },
+    "sindico_profissional": { "status": "nao_existe", "completude_pct": 0, "acao": "Enriquecimento via integradoras (campo existe, 0% preenchido)" },
+    "classe_economica_cep": { "status": "nao_existe", "completude_pct": 0, "acao": "Cruzamento CEP + IBGE setor censitário" },
+    "plano_saude_morador": { "status": "parcial", "completude_pct": 0.4, "acao": "Campo no onboarding do morador (LGPD)" },
+    "grupo_controle_ab": { "status": "nao_existe", "completude_pct": 0, "acao": "Criar tabela t_experimento_seguros antes do Mês 4" }
+  }
+}
