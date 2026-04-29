@@ -1,11 +1,209 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=bundle.html">
-  <title>Redirecionando...</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Tecnorise · MIV — Plataforma de Monetização</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:system-ui,-apple-system,sans-serif;
+    background:#020617;
+    color:#f8fafc;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+  }
+  .wrap{max-width:860px;width:100%;}
+
+  /* Header */
+  .logo{
+    font-size:11px;font-weight:700;letter-spacing:.14em;
+    color:#334155;text-transform:uppercase;
+    text-align:center;margin-bottom:48px;
+  }
+  .logo span{color:#6366f1;}
+
+  .headline{
+    text-align:center;
+    font-size:clamp(1.8rem,5vw,2.8rem);
+    font-weight:800;
+    letter-spacing:-.03em;
+    line-height:1.1;
+    margin-bottom:16px;
+  }
+  .headline em{font-style:normal;color:#475569;}
+
+  .sub{
+    text-align:center;
+    color:#64748b;font-size:14px;line-height:1.7;
+    max-width:480px;margin:0 auto 56px;
+  }
+
+  /* Cards */
+  .cards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-bottom:40px;
+  }
+  @media(max-width:600px){.cards{grid-template-columns:1fr;}}
+
+  .card{
+    background:#0f172a;
+    border:1px solid #1e293b;
+    border-radius:16px;
+    padding:32px 28px 28px;
+    text-decoration:none;
+    color:#f8fafc;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    position:relative;
+    overflow:hidden;
+    transition:border-color .2s, transform .15s;
+    cursor:pointer;
+  }
+  .card:hover{transform:translateY(-3px);}
+  .card-data:hover{border-color:#6366f1;}
+  .card-strat:hover{border-color:#10b981;}
+
+  .card-data::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,#6366f1,#818cf8);
+  }
+  .card-strat::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,#10b981,#34d399);
+  }
+
+  .card-icon{font-size:28px;}
+  .card-tag{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    padding:3px 10px;border-radius:999px;width:fit-content;
+  }
+  .tag-data{background:#6366f115;color:#818cf8;border:1px solid #6366f130;}
+  .tag-strat{background:#10b98115;color:#34d399;border:1px solid #10b98130;}
+
+  .card-title{font-size:1.25rem;font-weight:800;line-height:1.2;}
+  .card-desc{font-size:13px;color:#64748b;line-height:1.6;flex:1;}
+
+  .card-stats{
+    display:flex;gap:16px;
+    padding-top:16px;
+    border-top:1px solid #1e293b;
+    flex-wrap:wrap;
+  }
+  .stat{display:flex;flex-direction:column;gap:2px;}
+  .stat-val{font-size:16px;font-weight:800;}
+  .stat-lbl{font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:.06em;}
+
+  .card-arrow{
+    position:absolute;bottom:28px;right:28px;
+    font-size:18px;color:#1e293b;
+    transition:color .2s, transform .2s;
+  }
+  .card:hover .card-arrow{color:#64748b;transform:translate(3px,-3px);}
+
+  /* Footer note */
+  .footer{
+    text-align:center;
+    font-size:11px;color:#1e293b;
+    line-height:1.8;
+  }
+  .footer a{color:#334155;text-decoration:none;}
+  .footer a:hover{color:#64748b;}
+
+  /* Pulse dot */
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+  .pulse{
+    display:inline-block;width:6px;height:6px;border-radius:50%;
+    background:#22c55e;animation:pulse 2s infinite;
+    vertical-align:middle;margin-right:6px;
+  }
+</style>
 </head>
 <body>
-  <script>window.location.href = 'bundle.html'</script>
+
+<div class="wrap">
+
+  <div class="logo">
+    <span>Tecnorise</span> · MIV &nbsp;·&nbsp; Plataforma de Monetização
+  </div>
+
+  <h1 class="headline">
+    Um ativo.<br/>
+    <em>Três caminhos para receita.</em>
+  </h1>
+
+  <p class="sub">
+    1,56 milhão de moradores · 6.845 condomínios · 10 anos de relacionamento.
+    <br/>Escolha o painel que deseja consultar.
+  </p>
+
+  <div class="cards">
+
+    <!-- Card 1 — Dashboard de Dados -->
+    <a href="bundle.html" class="card card-data">
+      <div class="card-icon">📊</div>
+      <div class="card-tag tag-data">Dashboard de Dados</div>
+      <div class="card-title">Base Gear Admin<br/>Sistema de Recomendação</div>
+      <div class="card-desc">
+        Dados reais da plataforma — moradores, veículos, pets, dispositivos,
+        score de propensão, poder aquisitivo por bairro e setor censitário IBGE.
+      </div>
+      <div class="card-stats">
+        <div class="stat">
+          <span class="stat-val" style="color:#818cf8;">1,56 mi</span>
+          <span class="stat-lbl">Moradores</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val" style="color:#818cf8;">110K</span>
+          <span class="stat-lbl">Veículos</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val" style="color:#fbbf24;">4.510</span>
+          <span class="stat-lbl">Pets · 10 dias</span>
+        </div>
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+    <!-- Card 2 — Estratégia -->
+    <a href="estrategia.html" class="card card-strat">
+      <div class="card-icon">🎯</div>
+      <div class="card-tag tag-strat">Visão Estratégica</div>
+      <div class="card-title">Três Verticais<br/>de Monetização</div>
+      <div class="card-desc">
+        Seguros, Imobiliária e Serviços Pet — projeções financeiras independentes,
+        modelo de negócio, roadmap de validação e síntese do conselho Galápagos.
+      </div>
+      <div class="card-stats">
+        <div class="stat">
+          <span class="stat-val" style="color:#34d399;">R$ 2,8M</span>
+          <span class="stat-lbl">Projeção base</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val" style="color:#34d399;">R$ 10,3M</span>
+          <span class="stat-lbl">Projeção otimista</span>
+        </div>
+      </div>
+      <div class="card-arrow">↗</div>
+    </a>
+
+  </div>
+
+  <div class="footer">
+    <span class="pulse"></span>
+    Dados atualizados · 29 de abril de 2026 &nbsp;·&nbsp;
+    Tecnorise · MIV &nbsp;·&nbsp; Confidencial
+  </div>
+
+</div>
+
 </body>
 </html>
