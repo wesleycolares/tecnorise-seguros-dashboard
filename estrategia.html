@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Plataforma de Monetização — Tecnorise · MIV</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  body { font-family: system-ui,-apple-system,sans-serif; background:#020617; color:#f8fafc; }
+  .card { background:#0f172a; border:1px solid #1e293b; border-radius:1rem; }
+  .badge { display:inline-flex;align-items:center;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.04em; }
+  .tier-ap { background:#fef08a22;color:#fde047;border:1px solid #fde04740; }
+  .tier-b  { background:#6366f122;color:#818cf8;border:1px solid #818cf840; }
+  .tier-c  { background:#22c55e22;color:#4ade80;border:1px solid #4ade8040; }
+  .vertical-seguros { border-color:#6366f1; }
+  .vertical-pet     { border-color:#f59e0b; }
+  .vertical-imob    { border-color:#10b981; }
+  .hl-seguros { color:#818cf8; }
+  .hl-pet     { color:#fbbf24; }
+  .hl-imob    { color:#34d399; }
+  .bg-seguros { background:#6366f110; }
+  .bg-pet     { background:#f59e0b10; }
+  .bg-imob    { background:#10b98110; }
+  .progress { height:6px;background:#1e293b;border-radius:999px;overflow:hidden; }
+  .progress-bar { height:100%;border-radius:999px; }
+  .dot { width:10px;height:10px;border-radius:50%;display:inline-block;flex-shrink:0; }
+  table { width:100%;border-collapse:collapse; }
+  th,td { padding:10px 14px;text-align:left;font-size:13px;border-bottom:1px solid #1e293b; }
+  th { color:#64748b;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.06em; }
+  tr:last-child td { border-bottom:none; }
+  .scenario-cons { color:#64748b; }
+  .scenario-base { color:#f8fafc; }
+  .scenario-opt  { color:#4ade80; }
+  code { background:#1e293b;color:#94a3b8;padding:2px 6px;border-radius:4px;font-size:11px; }
+  .nav-link { color:#64748b;font-size:13px;text-decoration:none;transition:color .2s; }
+  .nav-link:hover { color:#f8fafc; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div style="background:#0a0f1e;border-bottom:1px solid #1e293b;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <span style="font-size:13px;font-weight:700;letter-spacing:.08em;color:#6366f1;">TECNORISE · MIV</span>
+    <span style="color:#1e293b">|</span>
+    <span style="font-size:12px;color:#475569;">Plataforma de Monetização — Visão Estratégica</span>
+  </div>
+  <div style="display:flex;gap:20px;align-items:center;">
+    <a href="bundle.html" class="nav-link">← Dashboard de Dados</a>
+    <span style="font-size:12px;color:#334155;">29 de abril de 2026</span>
+  </div>
+</div>
+
+<div style="max-width:1100px;margin:0 auto;padding:48px 24px;display:flex;flex-direction:column;gap:48px;">
+
+  <!-- HEADER -->
+  <div style="border-bottom:1px solid #1e293b;padding-bottom:32px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.12em;color:#6366f1;text-transform:uppercase;margin-bottom:8px;">
+      Conselho Estratégico · Sessão Galápagos — Abril 2026
+    </div>
+    <h1 style="font-size:2.2rem;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:12px;">
+      Três Caminhos para Receita<br/>
+      <span style="color:#475569;">sobre um Ativo que Já Existe</span>
+    </h1>
+    <p style="color:#94a3b8;font-size:15px;max-width:640px;line-height:1.6;">
+      1,56 milhão de moradores · 6.845 condomínios · 10 anos de relacionamento.
+      Engajamento orgânico sem produto vendido.
+      Este painel avalia três verticais de monetização de forma <strong style="color:#f8fafc;">independente</strong> —
+      cada uma com seu próprio pool, modelo e projeção.
+    </p>
+    <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
+      <span class="badge tier-ap">4.510 pets em 10 dias</span>
+      <span class="badge tier-b">110K veículos cadastrados</span>
+      <span class="badge tier-c">~28K proprietários estimados</span>
+      <span class="badge" style="background:#0f172a;color:#475569;border:1px solid #1e293b;">Sem produto vendido até hoje</span>
+    </div>
+  </div>
+
+  <!-- ATIVO PROPRIETÁRIO -->
+  <section>
+    <h2 style="font-size:11px;font-weight:700;letter-spacing:.1em;color:#475569;text-transform:uppercase;margin-bottom:16px;">O Ativo</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;">
+      <div class="card" style="padding:20px;">
+        <div style="font-size:28px;font-weight:800;color:#f8fafc;">1,56 mi</div>
+        <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Moradores cadastrados</div>
+        <div style="font-size:11px;color:#475569;margin-top:2px;">Identidade verificada</div>
+      </div>
+      <div class="card" style="padding:20px;">
+        <div style="font-size:28px;font-weight:800;color:#f8fafc;">6.845</div>
+        <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Condomínios ativos</div>
+        <div style="font-size:11px;color:#475569;margin-top:2px;">Canal B2B com síndico</div>
+      </div>
+      <div class="card" style="padding:20px;">
+        <div style="font-size:28px;font-weight:800;color:#fbbf24;">4.510</div>
+        <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Pets cadastrados</div>
+        <div style="font-size:11px;color:#fbbf24;margin-top:2px;">Em apenas 10 dias</div>
+      </div>
+      <div class="card" style="padding:20px;">
+        <div style="font-size:28px;font-weight:800;color:#818cf8;">110K</div>
+        <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Veículos + modelo</div>
+        <div style="font-size:11px;color:#475569;margin-top:2px;">Placa, marca, segmento</div>
+      </div>
+      <div class="card" style="padding:20px;">
+        <div style="font-size:28px;font-weight:800;color:#34d399;">~28K</div>
+        <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Proprietários est.</div>
+        <div style="font-size:11px;color:#475569;margin-top:2px;">~1,8% da base</div>
+      </div>
+      <div class="card" style="padding:20px;">
+        <div style="font-size:28px;font-weight:800;color:#f8fafc;">24</div>
+        <div style="font-size:12px;color:#94a3b8;margin-top:4px;">Estados cobertos</div>
+        <div style="font-size:11px;color:#475569;margin-top:2px;">SP, RS, MG, CE líderes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVISOR -->
+  <div style="display:flex;align-items:center;gap:16px;">
+    <div style="flex:1;height:1px;background:#1e293b;"></div>
+    <span style="font-size:11px;color:#334155;text-transform:uppercase;letter-spacing:.1em;">Três Verticais Independentes</span>
+    <div style="flex:1;height:1px;background:#1e293b;"></div>
+  </div>
+
+  <!-- VERTICAL 1 — SEGUROS -->
+  <section class="card vertical-seguros" style="padding:32px;">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:24px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <span style="font-size:24px;">🚗</span>
+          <span class="badge" style="background:#6366f120;color:#818cf8;border:1px solid #6366f140;">VERTICAL 1</span>
+        </div>
+        <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:6px;">Seguro Auto + Seguro Pet</h2>
+        <p style="color:#94a3b8;font-size:13px;max-width:520px;line-height:1.6;">
+          Embedded insurance usando o app já instalado como canal de cotação.
+          Dois produtos distintos com pools claramente identificados na base.
+        </p>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:11px;color:#475569;margin-bottom:4px;">Pool total segurável</div>
+        <div class="hl-seguros" style="font-size:2rem;font-weight:800;">134K</div>
+        <div style="font-size:12px;color:#64748b;">veículos + pets identificados</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;">
+      <!-- Auto -->
+      <div style="background:#0a0f1e;border-radius:.75rem;padding:20px;border:1px solid #1e293b;">
+        <div style="font-size:12px;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">Auto</div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-size:12px;color:#64748b;">Pool com veículo ativo</span>
+          <span style="font-size:13px;font-weight:700;">110K</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-size:12px;color:#64748b;">Alta/média-alta propensão</span>
+          <span style="font-size:13px;font-weight:700;">~20K (18%)</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-size:12px;color:#64748b;">Comissão média/apólice/mês</span>
+          <span style="font-size:13px;font-weight:700;">R$ 25</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+          <span style="font-size:12px;color:#64748b;">Modelo</span>
+          <span style="font-size:13px;font-weight:700;">White-label / parceria</span>
+        </div>
+        <div class="progress"><div class="progress-bar" style="width:18%;background:#6366f1;"></div></div>
+        <div style="font-size:11px;color:#475569;margin-top:6px;">Score de propensão calculado — 18% alta/média-alta</div>
+      </div>
+      <!-- Pet -->
+      <div style="background:#0a0f1e;border-radius:.75rem;padding:20px;border:1px solid #1e293b;">
+        <div style="font-size:12px;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">Pet</div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-size:12px;color:#64748b;">Pets cadastrados (10 dias)</span>
+          <span style="font-size:13px;font-weight:700;">4.510</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-size:12px;color:#64748b;">Projeção 12 meses</span>
+          <span style="font-size:13px;font-weight:700;">~50K–80K pets</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-size:12px;color:#64748b;">Comissão média/apólice/mês</span>
+          <span style="font-size:13px;font-weight:700;">R$ 15</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+          <span style="font-size:12px;color:#64748b;">Diferencial</span>
+          <span style="font-size:13px;font-weight:700;">Cadastro voluntário = intenção</span>
+        </div>
+        <div class="progress"><div class="progress-bar" style="width:82%;background:#f59e0b;"></div></div>
+        <div style="font-size:11px;color:#475569;margin-top:6px;">99,6% com foto · 90,4% com raça · dado rico pronto para cotação</div>
+      </div>
+    </div>
+    <!-- Projeção auto+pet -->
+    <div style="background:#0a0f1e;border-radius:.75rem;padding:20px;border:1px solid #1e293b;">
+      <div style="font-size:12px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;">Projeção Anual de Receita — Seguros</div>
+      <table>
+        <thead><tr>
+          <th>Produto</th><th>Pool</th>
+          <th class="scenario-cons">Conservador (1%)</th>
+          <th class="scenario-base">Base (3%)</th>
+          <th class="scenario-opt">Otimista (8%)</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600;">Seguro Auto</td>
+            <td style="color:#64748b;">20K leads</td>
+            <td class="scenario-cons">R$ 60K/ano</td>
+            <td class="scenario-base">R$ 180K/ano</td>
+            <td class="scenario-opt">R$ 480K/ano</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">Seguro Pet</td>
+            <td style="color:#64748b;">4.5K → 50K</td>
+            <td class="scenario-cons">R$ 8K/ano</td>
+            <td class="scenario-base">R$ 65K/ano</td>
+            <td class="scenario-opt">R$ 216K/ano</td>
+          </tr>
+          <tr style="border-top:1px solid #1e293b;">
+            <td style="font-weight:700;color:#818cf8;">Total Seguros</td>
+            <td></td>
+            <td class="scenario-cons" style="font-weight:700;">R$ 68K</td>
+            <td class="scenario-base" style="font-weight:700;">R$ 245K</td>
+            <td class="scenario-opt" style="font-weight:700;">R$ 696K</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;">
+      <div style="background:#6366f110;border:1px solid #6366f130;border-radius:.5rem;padding:10px 14px;font-size:12px;color:#94a3b8;">
+        <span style="color:#818cf8;font-weight:700;">Validação zero-cost:</span> ligar para 3 seguradoras (Porto Seguro, Tokio Marine, Petz) e apresentar a base. Score pronto, dados prontos.
+      </div>
+      <div style="background:#ef444410;border:1px solid #ef444430;border-radius:.5rem;padding:10px 14px;font-size:12px;color:#94a3b8;">
+        <span style="color:#fca5a5;font-weight:700;">Risco:</span> não confundir engajamento com intenção de compra — o cadastro de pet não é lead de seguro até ser ativado.
+      </div>
+    </div>
+  </section>
+
+  <!-- VERTICAL 2 — IMOBILIÁRIA -->
+  <section class="card vertical-imob" style="padding:32px;">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:24px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <span style="font-size:24px;">🏢</span>
+          <span class="badge" style="background:#10b98120;color:#34d399;border:1px solid #10b98140;">VERTICAL 2</span>
+          <span class="badge" style="background:#f59e0b15;color:#fbbf24;border:1px solid #f59e0b30;">⚡ Janela 12 meses — queda de juros</span>
+        </div>
+        <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:6px;">Imobiliária Embedded</h2>
+        <p style="color:#94a3b8;font-size:13px;max-width:520px;line-height:1.6;">
+          Usar a base B2B de síndicos e condomínios como canal de distribuição para transações imobiliárias.
+          Visão de médio prazo: aquisição de imobiliária operante nas praças-alvo.
+        </p>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:11px;color:#475569;margin-bottom:4px;">Pool proprietários est.</div>
+        <div class="hl-imob" style="font-size:2rem;font-weight:800;">~28K</div>
+        <div style="font-size:12px;color:#64748b;">moradores com imóvel próprio</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+      <div style="background:#0a0f1e;border-radius:.75rem;padding:20px;border:1px solid #1e293b;">
+        <div style="font-size:12px;font-weight:700;color:#34d399;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">Modelo de Negócio</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;justify-content:space-between;">
+            <span style="font-size:12px;color:#64748b;">Ticket médio imóvel (SP)</span>
+            <span style="font-size:13px;font-weight:700;">R$ 450K</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;">
+            <span style="font-size:12px;color:#64748b;">Comissão por transação</span>
+            <span style="font-size:13px;font-weight:700;">3–5%</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;">
+            <span style="font-size:12px;color:#64748b;">Receita por transação</span>
+            <span style="font-size:13px;font-weight:700;color:#34d399;">R$ 13,5K–22,5K</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;">
+            <span style="font-size:12px;color:#64748b;">Fase 1</span>
+            <span style="font-size:13px;font-weight:700;">Indicação com split</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;">
+            <span style="font-size:12px;color:#64748b;">Fase 2</span>
+            <span style="font-size:13px;font-weight:700;">Aquisição imobiliária-alvo</span>
+          </div>
+        </div>
+      </div>
+      <div style="background:#0a0f1e;border-radius:.75rem;padding:20px;border:1px solid #1e293b;">
+        <div style="font-size:12px;font-weight:700;color:#34d399;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">Concentração das praças</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div class="progress" style="flex:1;"><div class="progress-bar" style="width:52%;background:#10b981;"></div></div>
+            <span style="font-size:12px;font-weight:600;width:24px;">SP</span>
+            <span style="font-size:12px;color:#64748b;">1.901</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div class="progress" style="flex:1;"><div class="progress-bar" style="width:16%;background:#10b981;"></div></div>
+            <span style="font-size:12px;font-weight:600;width:24px;">RS</span>
+            <span style="font-size:12px;color:#64748b;">578</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div class="progress" style="flex:1;"><div class="progress-bar" style="width:7%;background:#10b981;"></div></div>
+            <span style="font-size:12px;font-weight:600;width:24px;">MG</span>
+            <span style="font-size:12px;color:#64748b;">241</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div class="progress" style="flex:1;"><div class="progress-bar" style="width:5%;background:#10b981;"></div></div>
+            <span style="font-size:12px;font-weight:600;width:24px;">CE</span>
+            <span style="font-size:12px;color:#64748b;">182</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div class="progress" style="flex:1;"><div class="progress-bar" style="width:5%;background:#10b981;"></div></div>
+            <span style="font-size:12px;font-weight:600;width:24px;">RJ</span>
+            <span style="font-size:12px;color:#64748b;">163</span>
+          </div>
+        </div>
+        <div style="font-size:11px;color:#475569;margin-top:12px;">SP concentra 52% da base → praça do piloto</div>
+      </div>
+    </div>
+
+    <!-- Projeção imob -->
+    <div style="background:#0a0f1e;border-radius:.75rem;padding:20px;border:1px solid #1e293b;margin-bottom:16px;">
+      <div style="font-size:12px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;">Projeção Anual de Receita — Imobiliária</div>
+      <table>
+        <thead><tr>
+          <th>Cenário</th><th>Transações/ano</th><th>Ticket médio</th>
+          <th>Comissão</th><th>Receita total</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="scenario-cons" style="font-weight:600;">Conservador</td>
+            <td class="scenario-cons">56 (0,2% do pool)</td>
+            <td>R$ 450K</td><td>3%</td>
+            <td class="scenario-cons" style="font-weight:700;">R$ 756K/ano</td>
+          </tr>
+          <tr>
+            <td class="scenario-base" style="font-weight:600;">Base</td>
+            <td class="scenario-base">140 (0,5%)</td>
+            <td>R$ 450K</td><td>3,5%</td>
+            <td class="scenario-base" style="font-weight:700;">R$ 2,2M/ano</td>
+          </tr>
+          <tr>
+            <td class="scenario-opt" style="font-weight:600;">Otimista</td>
+            <td class="scenario-opt">420 (1,5%)</td>
+            <td>R$ 500K</td><td>4%</td>
+            <td class="scenario-opt" style="font-weight:700;">R$ 8,4M/ano</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="font-size:11px;color:#475569;margin-top:10px;">* Fase 1 (indicação): 50% do valor; Fase 2 (imobiliária própria): 100%</div>
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <div style="background:#10b98110;border:1px solid #10b98130;border-radius:.5rem;padding:10px 14px;font-size:12px;color:#94a3b8;">
+        <span style="color:#34d399;font-weight:700;">Validação zero-cost (2 semanas):</span> ligar para 5 síndicos em SP + mapear preço de aquisição de imobiliárias nas praças com maior concentração de condos.
+      </div>
+      <div style="background:#ef444410;border:1px solid #ef444430;border-radius:.5rem;padding:10px 14px;font-size:12px;color:#94a3b8;">
+        <span style="color:#fca5a5;font-weight:700;">Risco concorrencial:</span> QuintoAndar e Loft podem chegar antes com oferta de parceria B2B. Janela estimada: 12 meses.
+      </div>
+    </div>
+  </section>
+
+  <!-- VERTICAL 3 — SERVIÇOS PET -->
+  <section class="card vertical-pet" style="padding:32px;">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:24px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <span style="font-size:24px;">🐾</span>
+          <span class="badge" style="background:#f59e0b20;color:#fbbf24;border:1px solid #f59e0b40;">VERTICAL 3</span>
+        </div>
+        <h2 style="font-size:1.5rem;font-weight:800;margin-bottom:6px;">Plataforma de Serviços Pet</h2>
+        <p style="color:#94a3b8;font-size:13px;max-width:520px;line-height:1.6;">
+          Além do seguro pet, o cadastro abre uma plataforma de serviços recorrentes:
+          pet shop, veterinário, daycare, banho e tosa — com identidade do animal já validada.
+          Modelo de marketplace ou assinatura.
+        </p>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:11px;color:#475569;margin-bottom:4px;">Crescimento observado</div>
+        <div class="hl-pet" style="font-size:2rem;font-weight:800;">451/dia</div>
+        <div style="font-size:12px;color:#64748b;">taxa média nos 10 primeiros dias</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:24px;">
+      <div style="background:#0a0f1e;border-radius:.75rem;padding:16px;border:1px solid #1e293b;text-align:center;">
+        <div style="font-size:22px;margin-bottom:6px;">💊</div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Produtos & Vet</div>
+        <div style="font-size:12px;color:#64748b;">Marketplace take-rate 10-15%</div>
+      </div>
+      <div style="background:#0a0f1e;border-radius:.75rem;padding:16px;border:1px solid #1e293b;text-align:center;">
+        <div style="font-size:22px;margin-bottom:6px;">✂️</div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Banho & Tosa</div>
+        <div style="font-size:12px;color:#64748b;">Agendamento no app · R$ 80-150/visita</div>
+      </div>
+      <div style="background:#0a0f1e;border-radius:.75rem;padding:16px;border:1px solid #1e293b;text-align:center;">
+        <div style="font-size:22px;margin-bottom:6px;">🏥</div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Telemedicina Vet</div>
+        <div style="font-size:12px;color:#64748b;">Assinatura R$ 30-50/mês</div>
+      </div>
+      <div style="background:#0a0f1e;border-radius:.75rem;padding:16px;border:1px solid #1e293b;text-align:center;">
+        <div style="font-size:22px;margin-bottom:6px;">🏠</div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Pet Sitter / Daycare</div>
+        <div style="font-size:12px;color:#64748b;">Dentro do condomínio · vizinhança</div>
+      </div>
+    </div>
+
+    <!-- Projeção serviços pet -->
+    <div style="background:#0a0f1e;border-radius:.75rem;padding:20px;border:1px solid #1e293b;margin-bottom:16px;">
+      <div style="font-size:12px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;">Projeção Anual de Receita — Serviços Pet (12 meses de crescimento)</div>
+      <table>
+        <thead><tr>
+          <th>Serviço</th><th>Base de pets projetada</th>
+          <th class="scenario-cons">Conservador</th>
+          <th class="scenario-base">Base</th>
+          <th class="scenario-opt">Otimista</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600;">Seguro Pet</td>
+            <td style="color:#64748b;">50K pets/ano</td>
+            <td class="scenario-cons">R$ 27K</td>
+            <td class="scenario-base">R$ 108K</td>
+            <td class="scenario-opt">R$ 270K</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">Serviços recorrentes</td>
+            <td style="color:#64748b;">50K pets/ano</td>
+            <td class="scenario-cons">R$ 60K</td>
+            <td class="scenario-base">R$ 300K</td>
+            <td class="scenario-opt">R$ 900K</td>
+          </tr>
+          <tr style="border-top:1px solid #1e293b;">
+            <td style="font-weight:700;color:#fbbf24;">Total Vertical Pet</td>
+            <td></td>
+            <td class="scenario-cons" style="font-weight:700;">R$ 87K</td>
+            <td class="scenario-base" style="font-weight:700;">R$ 408K</td>
+            <td class="scenario-opt" style="font-weight:700;">R$ 1,17M</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <div style="background:#f59e0b10;border:1px solid #f59e0b30;border-radius:.5rem;padding:10px 14px;font-size:12px;color:#94a3b8;">
+        <span style="color:#fbbf24;font-weight:700;">Diferencial único:</span> identidade do animal já validada (foto, raça, vacina) · moradores dentro do mesmo condomínio · confiança peer-to-peer.
+      </div>
+      <div style="background:#ef444410;border:1px solid #ef444430;border-radius:.5rem;padding:10px 14px;font-size:12px;color:#94a3b8;">
+        <span style="color:#fca5a5;font-weight:700;">Risco:</span> complexidade operacional de marketplace. Começar por seguro pet (sem operação) antes de serviços.
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJEÇÃO CONSOLIDADA -->
+  <section>
+    <h2 style="font-size:11px;font-weight:700;letter-spacing:.1em;color:#475569;text-transform:uppercase;margin-bottom:16px;">Projeção Consolidada — Três Verticais</h2>
+    <div class="card" style="padding:28px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+        <div>
+          <table style="margin-bottom:16px;">
+            <thead><tr>
+              <th>Vertical</th>
+              <th class="scenario-cons">Conservador</th>
+              <th class="scenario-base">Base</th>
+              <th class="scenario-opt">Otimista</th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <td><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#6366f1;margin-right:6px;"></span>Seguros</td>
+                <td class="scenario-cons">R$ 68K</td>
+                <td class="scenario-base">R$ 245K</td>
+                <td class="scenario-opt">R$ 696K</td>
+              </tr>
+              <tr>
+                <td><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#10b981;margin-right:6px;"></span>Imobiliária</td>
+                <td class="scenario-cons">R$ 756K</td>
+                <td class="scenario-base">R$ 2,2M</td>
+                <td class="scenario-opt">R$ 8,4M</td>
+              </tr>
+              <tr>
+                <td><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#f59e0b;margin-right:6px;"></span>Serviços Pet</td>
+                <td class="scenario-cons">R$ 87K</td>
+                <td class="scenario-base">R$ 408K</td>
+                <td class="scenario-opt">R$ 1,17M</td>
+              </tr>
+              <tr style="border-top:2px solid #1e293b;">
+                <td style="font-weight:800;font-size:14px;">TOTAL</td>
+                <td class="scenario-cons" style="font-weight:800;font-size:14px;">R$ 911K</td>
+                <td class="scenario-base" style="font-weight:800;font-size:15px;">R$ 2,85M</td>
+                <td class="scenario-opt" style="font-weight:800;font-size:15px;color:#4ade80;">R$ 10,3M</td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="font-size:11px;color:#334155;line-height:1.7;">
+            * Projeções para 12 meses a partir do início do piloto.<br/>
+            * Imobiliária Fase 1 = 50% da comissão (modelo indicação).<br/>
+            * Não inclui custos operacionais, impostos ou capex de aquisição.
+          </div>
+        </div>
+        <div>
+          <canvas id="receitaChart" height="220"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSELHO / O QUE APRENDEMOS -->
+  <section>
+    <h2 style="font-size:11px;font-weight:700;letter-spacing:.1em;color:#475569;text-transform:uppercase;margin-bottom:16px;">O que o Conselho Disse — Galápagos, Abril 2026</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;">
+      <div class="card" style="padding:20px;border-color:#6366f140;">
+        <div style="font-size:18px;margin-bottom:8px;">🎯</div>
+        <p style="font-size:13px;color:#94a3b8;line-height:1.6;">
+          <strong style="color:#f8fafc;">"Aqui está a jornada que já começou"</strong>
+          — não apresentar como produto pronto, mas como tração orgânica real.
+          4.510 pets em 10 dias é o argumento.
+        </p>
+      </div>
+      <div class="card" style="padding:20px;border-color:#f59e0b40;">
+        <div style="font-size:18px;margin-bottom:8px;">⚠️</div>
+        <p style="font-size:13px;color:#94a3b8;line-height:1.6;">
+          <strong style="color:#f8fafc;">Não confundir engajamento com intenção de compra.</strong>
+          O cadastro de pet mostra apego ao animal —
+          mas responder "por que cadastraram voluntariamente?" é a pergunta que o fundo vai fazer.
+        </p>
+      </div>
+      <div class="card" style="padding:20px;border-color:#10b98140;">
+        <div style="font-size:18px;margin-bottom:8px;">⏱️</div>
+        <p style="font-size:13px;color:#94a3b8;line-height:1.6;">
+          <strong style="color:#f8fafc;">Janela imobiliária: 12 meses.</strong>
+          A queda de juros cria uma oportunidade real agora.
+          QuintoAndar e Loft podem chegar antes com parceria B2B.
+          Validar custo zero antes de estruturar.
+        </p>
+      </div>
+      <div class="card" style="padding:20px;border-color:#ef444440;">
+        <div style="font-size:18px;margin-bottom:8px;">❓</div>
+        <p style="font-size:13px;color:#94a3b8;line-height:1.6;">
+          <strong style="color:#f8fafc;">Pergunta em aberto do conselho:</strong>
+          qual praça tem maior concentração de condomínios na base?
+          É lá que começa o piloto imobiliário e é lá que se busca a imobiliária-alvo para adquirir.
+          <span style="color:#34d399;font-weight:700;">Resposta: São Paulo · 1.901 condomínios.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section>
+    <h2 style="font-size:11px;font-weight:700;letter-spacing:.1em;color:#475569;text-transform:uppercase;margin-bottom:16px;">Próximos Passos — Validação em 3 Fases</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+      <div class="card" style="padding:24px;border-color:#6366f140;">
+        <div style="font-size:11px;font-weight:700;color:#818cf8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">Fase 1 — 2 semanas · Custo zero</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <li style="font-size:13px;color:#94a3b8;display:flex;gap:8px;"><span style="color:#818cf8;flex-shrink:0;">→</span>Ligar para 5 síndicos em SP sobre interesse imobiliário</li>
+          <li style="font-size:13px;color:#94a3b8;display:flex;gap:8px;"><span style="color:#818cf8;flex-shrink:0;">→</span>Mapear preço de aquisição de 3 imobiliárias em SP</li>
+          <li style="font-size:13px;color:#94a3b8;display:flex;gap:8px;"><span style="color:#818cf8;flex-shrink:0;">→</span>Contato com Porto Seguro / Petz para parceria de seguro pet</li>
+          <li style="font-size:13px;color:#94a3b8;display:flex;gap:8px;"><span style="color:#818cf8;flex-shrink:0;">→</span>Verificar taxa de crescimento pets semana 2 vs semana 1</li>
+        </ul>
+      </div>
+      <div class="card" style="padding:24px;border-color:#10b98140;">
+        <div style="font-size:11px;font-weight:700;color:#34d399;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">Fase 2 — 60-90 dias · Piloto</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <li style="font-size:13px;color:#94a3b8;display:flex;gap:8px;"><span style="color:#34d399;flex-shrink:0;">→</span>Piloto seguro pet em 3 integradoras (Qualiport, SERVIS, CODESEG)</li>
+          <li style="font-size:13px;color:#94a3b8;display:flex;gap:8px;"><span style="color:#34d399;flex-shrink:0;">→</span>Parceria de indicação imobiliária em SP (1 imobiliária parceira)</li>
+          <li style="font-size:13px;color:#94a3b8;display:flex;gap:8px;"><span style="color:#34d399;flex-shrink:0;">→</span>Postfix de score auto nos 20K leads de alta propensão</li>
+          <li style="font-size:13px;color:#94a3b8;display:flex;gap:8px;"><span style="color:#34d399;flex-shrink:0;">→</span>Medir: visita → cotação → conversão por vertical</li>
+        </ul>
+      </div>
+      <div class="card" style="padding:24px;border-color:#f59e0b40;">
+        <div style="font-size:11px;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;">Fase 3 — 6 meses · Escala</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <li style="font-size:13px;color:#94a3b8;display:flex;gap:8px;"><span style="color:#fbbf24;flex-shrink:0;">→</span>Decisão: adquirir imobiliária ou manter como parceria</li>
+          <li style="font-size:13px;color:#94a3b8;display:flex;gap:8px;"><span style="color:#fbbf24;flex-shrink:0;">→</span>Lançamento plataforma serviços pet (seguro + agendamento)</li>
+          <li style="font-size:13px;color:#94a3b8;display:flex;gap:8px;"><span style="color:#fbbf24;flex-shrink:0;">→</span>Integrar cod_setor IBGE (PostGIS) para scoring precisão de quadra</li>
+          <li style="font-size:13px;color:#94a3b8;display:flex;gap:8px;"><span style="color:#fbbf24;flex-shrink:0;">→</span>Apresentar métricas reais ao Galápagos para rodada</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div style="border-top:1px solid #1e293b;padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:#334155;text-transform:uppercase;">Tecnorise · MIV — Confidencial</div>
+      <div style="font-size:11px;color:#1e293b;margin-top:2px;">Uso restrito ao conselho estratégico · Não compartilhar sem autorização · Abril 2026</div>
+    </div>
+    <a href="bundle.html" style="font-size:12px;color:#6366f1;text-decoration:none;">← Ver Dashboard de Dados →</a>
+  </div>
+
+</div>
+
+<script>
+const ctx = document.getElementById('receitaChart').getContext('2d');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Conservador', 'Base', 'Otimista'],
+    datasets: [
+      { label: 'Seguros',      data: [68, 245, 696],  backgroundColor: '#6366f1', borderRadius: 4 },
+      { label: 'Imobiliária',  data: [756, 2200, 8400], backgroundColor: '#10b981', borderRadius: 4 },
+      { label: 'Serviços Pet', data: [87, 408, 1170],  backgroundColor: '#f59e0b', borderRadius: 4 },
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { labels: { color: '#94a3b8', boxWidth: 12, padding: 12 } },
+      tooltip: { callbacks: { label: ctx => ` R$ ${ctx.parsed.y.toLocaleString('pt-BR')}K` } }
+    },
+    scales: {
+      x: { stacked: true, ticks: { color: '#64748b' }, grid: { color: '#0f172a' } },
+      y: { stacked: true, ticks: { color: '#64748b', callback: v => `R$ ${v}K` }, grid: { color: '#0f172a' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
