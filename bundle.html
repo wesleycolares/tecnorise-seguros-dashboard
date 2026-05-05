@@ -9,36 +9,16 @@
 </head>
 <body>
 
-<div id="supa-gate" style="position:fixed;inset:0;background:#020817;z-index:9999;display:flex;align-items:center;justify-content:center;font-family:system-ui,-apple-system,sans-serif">
-  <div style="width:100%;max-width:420px;padding:40px 32px">
-    <div style="text-align:center;margin-bottom:36px">
-      <p style="color:#6366f1;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin:0 0 10px">Tecnorise · Gear Admin</p>
-      <h1 style="color:#f8fafc;font-size:26px;font-weight:700;margin:0 0 6px;line-height:1.2">Sistema de Recomendação</h1>
-      <p style="color:#475569;font-size:13px;margin:0">Acesso restrito · Entre com seu email corporativo</p>
-    </div>
-    <div id="supa-form">
-      <input id="supa-email" type="email" placeholder="seu@email.com" autocomplete="email"
-        style="width:100%;padding:13px 16px;background:#0f172a;border:1.5px solid #1e293b;border-radius:10px;color:#f8fafc;font-size:15px;box-sizing:border-box;outline:none;margin-bottom:10px;transition:border-color .2s"
-        onfocus="this.style.borderColor='#6366f1'" onblur="this.style.borderColor='#1e293b'"/>
-      <button id="supa-btn" onclick="supaLogin()"
-        style="width:100%;padding:13px;background:#6366f1;border:none;border-radius:10px;color:white;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s;letter-spacing:.01em"
-        onmouseover="this.style.background='#4f46e5'" onmouseout="this.style.background='#6366f1'">
-        Enviar link de acesso
-      </button>
-      <p id="supa-msg" style="font-size:13px;text-align:center;margin:14px 0 0;min-height:18px"></p>
-    </div>
-  </div>
-</div>
-<div id="supa-logout" style="display:none;position:fixed;top:20px;right:24px;z-index:8888">
-  <button onclick="supaLogout()"
-    style="display:flex;align-items:center;gap:6px;padding:7px 14px;background:#0f172a;border:1px solid #1e293b;border-radius:8px;color:#64748b;font-size:12px;cursor:pointer;font-family:system-ui,-apple-system,sans-serif;transition:all .2s"
+<div id="supa-back" style="position:fixed;top:20px;left:24px;z-index:8888">
+  <a href="index.html"
+    style="display:flex;align-items:center;gap:6px;padding:7px 14px;background:#0f172a;border:1px solid #1e293b;border-radius:8px;color:#64748b;font-size:12px;cursor:pointer;font-family:system-ui,-apple-system,sans-serif;text-decoration:none;transition:all .2s"
     onmouseover="this.style.borderColor='#6366f1';this.style.color='#a5b4fc'" onmouseout="this.style.borderColor='#1e293b';this.style.color='#64748b'">
-    <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-    Sair
-  </button>
+    <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+    Voltar
+  </a>
 </div>
 
-<div id="root" style="display:none"></div>
+<div id="root"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
@@ -46,48 +26,12 @@
   var SUPA_URL = "https://ivcwzmoqzivccjyewjaw.supabase.co";
   var SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2Y3d6bW9xeml2Y2NqeWV3amF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0NzIwODksImV4cCI6MjA5MzA0ODA4OX0.WUGKojr3a0LSvVN8ocpnS59PRq93MPbOCvxhPR3a_Q4";
   var sb = supabase.createClient(SUPA_URL, SUPA_KEY);
-  var REDIRECT = window.location.href.split('?')[0].split('#')[0];
-
-  function showDash() {
-    document.getElementById('supa-gate').style.display = 'none';
-    document.getElementById('root').style.display = '';
-    document.getElementById('supa-logout').style.display = 'block';
+  var HOME = window.location.href.replace(/\/[^\/]*$/, '/index.html');
+  function guard(session) {
+    if (!session) window.location.replace(HOME);
   }
-  function showLogin() {
-    document.getElementById('supa-gate').style.display = 'flex';
-    document.getElementById('root').style.display = 'none';
-    document.getElementById('supa-logout').style.display = 'none';
-  }
-  window.supaLogin = async function() {
-    var email = document.getElementById('supa-email').value.trim();
-    var msg = document.getElementById('supa-msg');
-    var btn = document.getElementById('supa-btn');
-    if (!email) { msg.style.color='#ef4444'; msg.textContent='Digite seu email'; return; }
-    btn.textContent = 'Verificando…'; btn.disabled = true; btn.style.opacity = '.7';
-    var check = await sb.from('allowed_emails').select('email').eq('email', email).maybeSingle();
-    if (!check.data) {
-      msg.style.color = '#ef4444';
-      msg.textContent = '⛔ Email não autorizado. Solicite acesso ao administrador.';
-      btn.textContent = 'Enviar link de acesso'; btn.disabled = false; btn.style.opacity = '1';
-      return;
-    }
-    btn.textContent = 'Enviando…';
-    var r = await sb.auth.signInWithOtp({ email: email, options: { emailRedirectTo: REDIRECT } });
-    if (r.error) {
-      msg.style.color = '#ef4444'; msg.textContent = r.error.message;
-      btn.textContent = 'Enviar link de acesso'; btn.disabled = false; btn.style.opacity = '1';
-    } else {
-      msg.style.color = '#22c55e';
-      msg.textContent = '✅ Link enviado! Verifique seu email.';
-      btn.textContent = 'Link enviado ✓'; btn.style.background = '#16a34a';
-    }
-  };
-  window.supaLogout = async function() { await sb.auth.signOut(); showLogin(); };
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' && document.getElementById('supa-gate').style.display !== 'none') supaLogin();
-  });
-  sb.auth.onAuthStateChange(function(_, session) { if (session) showDash(); else showLogin(); });
-  sb.auth.getSession().then(function(r) { if (r.data.session) showDash(); else showLogin(); });
+  sb.auth.onAuthStateChange(function(_, session) { guard(session); });
+  sb.auth.getSession().then(function(r) { guard(r.data.session); });
 })();
 </script>
 

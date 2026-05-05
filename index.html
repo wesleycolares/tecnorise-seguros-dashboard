@@ -19,6 +19,30 @@
   }
   .wrap{max-width:860px;width:100%;}
 
+  /* ── Login ── */
+  #login-gate{
+    width:100%;max-width:420px;margin:0 auto;
+    padding:40px 32px;
+    background:#0f172a;border:1px solid #1e293b;border-radius:18px;
+  }
+  #login-gate input{
+    width:100%;padding:13px 16px;background:#020617;
+    border:1.5px solid #1e293b;border-radius:10px;color:#f8fafc;
+    font-size:14px;outline:none;margin-bottom:12px;font-family:inherit;
+    transition:border-color .2s;
+  }
+  #login-gate input:focus{border-color:#6366f1;}
+  #login-gate button{
+    width:100%;padding:13px;background:#6366f1;border:none;
+    border-radius:10px;color:white;font-size:14px;font-weight:600;
+    cursor:pointer;transition:background .2s;font-family:inherit;
+  }
+  #login-gate button:hover{background:#4f46e5;}
+  #login-gate button:disabled{opacity:.6;cursor:wait;}
+
+  /* ── Dashboard content ── */
+  #dash-content{display:none;}
+
   /* Header */
   .logo{
     font-size:11px;font-weight:700;letter-spacing:.14em;
@@ -109,6 +133,18 @@
   }
   .card:hover .card-arrow{color:#64748b;transform:translate(3px,-3px);}
 
+  /* Sair button */
+  #btn-sair{
+    display:none;
+    position:fixed;top:20px;right:24px;z-index:8888;
+    align-items:center;gap:6px;padding:7px 14px;
+    background:#0f172a;border:1px solid #1e293b;border-radius:8px;
+    color:#64748b;font-size:12px;cursor:pointer;
+    font-family:system-ui,-apple-system,sans-serif;
+    transition:all .2s;
+  }
+  #btn-sair:hover{border-color:#6366f1;color:#a5b4fc;}
+
   /* Footer note */
   .footer{
     text-align:center;
@@ -129,81 +165,166 @@
 </head>
 <body>
 
-<div class="wrap">
+<!-- Botão Sair (fixo, visível só quando logado) -->
+<button id="btn-sair" onclick="supaLogout()">
+  <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+  </svg>
+  Sair
+</button>
 
-  <div class="logo">
-    <span>Tecnorise</span> · MIV &nbsp;·&nbsp; Plataforma de Monetização
+<!-- ── LOGIN GATE ── -->
+<div id="login-gate">
+  <div style="text-align:center;margin-bottom:32px">
+    <p style="color:#6366f1;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin:0 0 10px">Tecnorise · MIV</p>
+    <h1 style="color:#f8fafc;font-size:24px;font-weight:700;margin:0 0 6px;line-height:1.2">Plataforma de Monetização</h1>
+    <p style="color:#475569;font-size:13px;margin:0">Acesso restrito · Entre com seu email corporativo</p>
   </div>
-
-  <h1 class="headline">
-    Um ativo.<br/>
-    <em>Três caminhos para receita.</em>
-  </h1>
-
-  <p class="sub">
-    1,56 milhão de moradores · 6.845 condomínios · 10 anos de relacionamento.
-    <br/>Escolha o painel que deseja consultar.
-  </p>
-
-  <div class="cards">
-
-    <!-- Card 1 — Dashboard de Dados -->
-    <a href="bundle.html" class="card card-data">
-      <div class="card-icon">📊</div>
-      <div class="card-tag tag-data">Dashboard de Dados</div>
-      <div class="card-title">Base Gear Admin<br/>Sistema de Recomendação</div>
-      <div class="card-desc">
-        Dados reais da plataforma — moradores, veículos, pets, dispositivos,
-        score de propensão, poder aquisitivo por bairro e setor censitário IBGE.
-      </div>
-      <div class="card-stats">
-        <div class="stat">
-          <span class="stat-val" style="color:#818cf8;">1,56 mi</span>
-          <span class="stat-lbl">Moradores</span>
-        </div>
-        <div class="stat">
-          <span class="stat-val" style="color:#818cf8;">110K</span>
-          <span class="stat-lbl">Veículos</span>
-        </div>
-        <div class="stat">
-          <span class="stat-val" style="color:#fbbf24;">4.510</span>
-          <span class="stat-lbl">Pets · 10 dias</span>
-        </div>
-      </div>
-      <div class="card-arrow">↗</div>
-    </a>
-
-    <!-- Card 2 — Estratégia -->
-    <a href="estrategia.html" class="card card-strat">
-      <div class="card-icon">🎯</div>
-      <div class="card-tag tag-strat">Visão Estratégica</div>
-      <div class="card-title">Três Verticais<br/>de Monetização</div>
-      <div class="card-desc">
-        Seguros, Imobiliária e Serviços Pet — projeções financeiras independentes,
-        modelo de negócio, roadmap de validação e síntese do conselho Galápagos.
-      </div>
-      <div class="card-stats">
-        <div class="stat">
-          <span class="stat-val" style="color:#34d399;">R$ 2,8M</span>
-          <span class="stat-lbl">Projeção base</span>
-        </div>
-        <div class="stat">
-          <span class="stat-val" style="color:#34d399;">R$ 10,3M</span>
-          <span class="stat-lbl">Projeção otimista</span>
-        </div>
-      </div>
-      <div class="card-arrow">↗</div>
-    </a>
-
-  </div>
-
-  <div class="footer">
-    <span class="pulse"></span>
-    Dados atualizados · 29 de abril de 2026 &nbsp;·&nbsp;
-    Tecnorise · MIV &nbsp;·&nbsp; Confidencial
-  </div>
-
+  <input id="supa-email" type="email" placeholder="seu@email.com" autocomplete="email"/>
+  <button id="supa-btn" onclick="supaLogin()">Enviar link de acesso</button>
+  <p id="supa-msg" style="font-size:13px;text-align:center;margin:14px 0 0;min-height:18px"></p>
 </div>
+
+<!-- ── DASHBOARD (mostrado após login) ── -->
+<div id="dash-content">
+  <div class="wrap">
+
+    <div class="logo">
+      <span>Tecnorise</span> · MIV &nbsp;·&nbsp; Plataforma de Monetização
+    </div>
+
+    <h1 class="headline">
+      Um ativo.<br/>
+      <em>Três caminhos para receita.</em>
+    </h1>
+
+    <p class="sub">
+      1,57 milhão de moradores · 6.845 condomínios · 10 anos de relacionamento.
+      <br/>Escolha o painel que deseja consultar.
+    </p>
+
+    <div class="cards">
+
+      <!-- Card 1 — Dashboard de Dados -->
+      <a href="bundle.html" class="card card-data">
+        <div class="card-icon">📊</div>
+        <div class="card-tag tag-data">Dashboard de Dados</div>
+        <div class="card-title">Base Gear Admin<br/>Sistema de Recomendação</div>
+        <div class="card-desc">
+          Dados reais da plataforma — moradores, veículos, pets, dispositivos,
+          score de propensão, poder aquisitivo por bairro e setor censitário IBGE.
+        </div>
+        <div class="card-stats">
+          <div class="stat">
+            <span class="stat-val" style="color:#818cf8;">1,57 mi</span>
+            <span class="stat-lbl">Moradores</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val" style="color:#818cf8;">140K</span>
+            <span class="stat-lbl">Veículos</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val" style="color:#fbbf24;">5.635</span>
+            <span class="stat-lbl">Pets</span>
+          </div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </a>
+
+      <!-- Card 2 — Estratégia -->
+      <a href="estrategia.html" class="card card-strat">
+        <div class="card-icon">🎯</div>
+        <div class="card-tag tag-strat">Visão Estratégica</div>
+        <div class="card-title">Três Verticais<br/>de Monetização</div>
+        <div class="card-desc">
+          Seguros, Imobiliária e Serviços Pet — projeções financeiras independentes,
+          modelo de negócio, roadmap de validação e síntese do conselho Galápagos.
+        </div>
+        <div class="card-stats">
+          <div class="stat">
+            <span class="stat-val" style="color:#34d399;">R$ 2,8M</span>
+            <span class="stat-lbl">Projeção base</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val" style="color:#34d399;">R$ 10,3M</span>
+            <span class="stat-lbl">Projeção otimista</span>
+          </div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </a>
+
+    </div>
+
+    <div class="footer">
+      <span class="pulse"></span>
+      Dados atualizados · 05 de maio de 2026 &nbsp;·&nbsp;
+      Tecnorise · MIV &nbsp;·&nbsp; Confidencial
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+(function() {
+  var SUPA_URL = "https://ivcwzmoqzivccjyewjaw.supabase.co";
+  var SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2Y3d6bW9xeml2Y2NqeWV3amF3IiwicGxhbm5lZCI6InBybyIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzQ2NDY0NzQ1LCJleHAiOjIwNjIwNDA3NDV9.bVQFJBkMWMaJyj2gBp_-E1NbFd9Lp2q11R78T_FhSMU";
+  var sb = supabase.createClient(SUPA_URL, SUPA_KEY);
+  var REDIRECT = window.location.href.split('?')[0].split('#')[0];
+
+  function showDash() {
+    document.getElementById('login-gate').style.display = 'none';
+    document.getElementById('dash-content').style.display = 'block';
+    document.getElementById('btn-sair').style.display = 'flex';
+  }
+  function showLogin() {
+    document.getElementById('login-gate').style.display = 'block';
+    document.getElementById('dash-content').style.display = 'none';
+    document.getElementById('btn-sair').style.display = 'none';
+    document.getElementById('supa-msg').textContent = '';
+    document.getElementById('supa-btn').textContent = 'Enviar link de acesso';
+    document.getElementById('supa-btn').style.background = '#6366f1';
+    document.getElementById('supa-btn').disabled = false;
+  }
+
+  window.supaLogin = async function() {
+    var email = document.getElementById('supa-email').value.trim();
+    var msg = document.getElementById('supa-msg');
+    var btn = document.getElementById('supa-btn');
+    if (!email) { msg.style.color='#ef4444'; msg.textContent='Digite seu email'; return; }
+    btn.textContent = 'Verificando…'; btn.disabled = true; btn.style.opacity = '.7';
+    var check = await sb.from('allowed_emails').select('email').eq('email', email).maybeSingle();
+    if (!check.data) {
+      msg.style.color = '#ef4444';
+      msg.textContent = '⛔ Email não autorizado. Solicite acesso ao administrador.';
+      btn.textContent = 'Enviar link de acesso'; btn.disabled = false; btn.style.opacity = '1';
+      return;
+    }
+    btn.textContent = 'Enviando…'; btn.style.opacity = '1';
+    var r = await sb.auth.signInWithOtp({ email: email, options: { emailRedirectTo: REDIRECT } });
+    if (r.error) {
+      msg.style.color = '#ef4444'; msg.textContent = r.error.message;
+      btn.textContent = 'Enviar link de acesso'; btn.disabled = false;
+    } else {
+      msg.style.color = '#22c55e';
+      msg.textContent = '✅ Link enviado! Verifique seu email.';
+      btn.textContent = 'Link enviado ✓'; btn.style.background = '#16a34a';
+    }
+  };
+
+  window.supaLogout = async function() {
+    await sb.auth.signOut();
+    showLogin();
+  };
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && document.getElementById('login-gate').style.display !== 'none') supaLogin();
+  });
+
+  sb.auth.onAuthStateChange(function(_, session) { if (session) showDash(); else showLogin(); });
+  sb.auth.getSession().then(function(r) { if (r.data.session) showDash(); else showLogin(); });
+})();
+</script>
 
 </body>
 </html>

@@ -38,6 +38,28 @@
 </style>
 </head>
 <body>
+<!-- Auth guard -->
+<div id="strat-back" style="position:fixed;top:20px;left:24px;z-index:8888">
+  <a href="index.html"
+    style="display:flex;align-items:center;gap:6px;padding:7px 14px;background:#0f172a;border:1px solid #1e293b;border-radius:8px;color:#64748b;font-size:12px;cursor:pointer;font-family:system-ui,-apple-system,sans-serif;text-decoration:none;transition:all .2s"
+    onmouseover="this.style.borderColor='#6366f1';this.style.color='#a5b4fc'" onmouseout="this.style.borderColor='#1e293b';this.style.color='#64748b'">
+    <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+    Voltar
+  </a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+(function() {
+  var SUPA_URL = "https://ivcwzmoqzivccjyewjaw.supabase.co";
+  var SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2Y3d6bW9xeml2Y2NqeWV3amF3IiwicGxhbm5lZCI6InBybyIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzQ2NDY0NzQ1LCJleHAiOjIwNjIwNDA3NDV9.bVQFJBkMWMaJyj2gBp_-E1NbFd9Lp2q11R78T_FhSMU";
+  var sb = supabase.createClient(SUPA_URL, SUPA_KEY);
+  var HOME = window.location.href.replace(/\/[^\/]*$/, '/index.html');
+  function guard(session) { if (!session) window.location.replace(HOME); }
+  sb.auth.onAuthStateChange(function(_, session) { guard(session); });
+  sb.auth.getSession().then(function(r) { guard(r.data.session); });
+})();
+</script>
+
 
 <!-- NAV -->
 <div style="background:#0a0f1e;border-bottom:1px solid #1e293b;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;">
