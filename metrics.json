@@ -1,0 +1,53 @@
+{
+  "updated_at": "2026-05-05T08:00:00-03:00",
+  "kpi_cards": [
+    { "label": "Moradores cadastrados", "value": "1,57 mi", "icon": "👥", "sub": "Total ativo na plataforma" },
+    { "label": "Condomínios ativos",    "value": "6.845",   "icon": "🏢", "sub": "Em toda a base" },
+    { "label": "Unidades com app",      "value": "255 mil", "icon": "🏠", "sub": "Apartamentos c/ app instalado" },
+    { "label": "Moradores com app",     "value": "482 mil", "icon": "📱", "sub": "Residentes ativos c/ app" },
+    { "label": "Moradores c/ veículo",  "value": "115 mil", "icon": "🚗", "sub": "Público-alvo seguro auto" },
+    { "label": "Veículos cadastrados",  "value": "140 mil", "icon": "🔑", "sub": "Placa + marca + modelo" }
+  ],
+  "score": {
+    "labels": ["Alta propensão (≥80)", "Média-alta (60–79)", "Média (40–59)", "Baixa (<40)"],
+    "values": [1879, 22484, 100882, 14758],
+    "pcts":   [1.3, 16.1, 72.1, 10.5],
+    "colors": ["#22c55e", "#6366f1", "#eab308", "#ef4444"]
+  },
+  "fleet_segments": {
+    "labels": ["Entrada/Popular", "SUV Médio-Alto", "Sedan/Hatch Médio", "Premium/Luxo"],
+    "values": [110682, 18474, 10528, 318],
+    "pcts":   [79.1, 13.2, 7.5, 0.2],
+    "colors": ["#475569", "#6366f1", "#818cf8", "#f59e0b"]
+  },
+  "device_os": {
+    "labels": ["iOS (Apple)", "Android"],
+    "values": [398380, 422293],
+    "pcts":   [48.5, 51.5],
+    "colors": ["#6366f1", "#22c55e"]
+  },
+  "age_data": {
+    "labels": ["65+ anos", "35–49 anos", "25–34 anos", "Até 24 anos", "50–64 anos", "Sem dado"],
+    "values": [36.3, 17.7, 16.3, 16.4, 10.0, 3.2],
+    "colors": ["#6366f1","#818cf8","#a5b4fc","#c7d2fe","#e0e7ff","#334155"]
+  },
+  "data_fields": [
+    { "label": "Data de nascimento", "pct": 96.8, "desc": "Segmentação por faixa etária e produto" },
+    { "label": "Foto do morador",    "pct": 67.3, "desc": "Prova de vida e antifraude básico" },
+    { "label": "Celular",            "pct": 65.4, "desc": "Canal de notificação e contratação" },
+    { "label": "CPF",                "pct": 65.4, "desc": "Identificação para cotação e emissão" },
+    { "label": "Email",              "pct": 50.6, "desc": "Canal digital de oferta e comunicação" }
+  ],
+  "pool_funnel": [
+    { "label": "Base total de moradores",      "value": 1571051, "pct": 100,  "color": "#6366f1" },
+    { "label": "CPF + 18 meses na plataforma", "value": 482755,  "pct": 30.7, "color": "#818cf8" },
+    { "label": "CPF + 18 meses + Email",       "value": 295515,  "pct": 18.8, "color": "#a5b4fc" }
+  ],
+  "pets": {
+    "total": 5635,
+    "unidades": 4249,
+    "lancamento": "20/04/2026",
+    "dias_ativos": 15,
+    "species_values": [4134, 1422, 79]
+  }
+}
