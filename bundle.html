@@ -63,7 +63,15 @@
     var msg = document.getElementById('supa-msg');
     var btn = document.getElementById('supa-btn');
     if (!email) { msg.style.color='#ef4444'; msg.textContent='Digite seu email'; return; }
-    btn.textContent = 'Enviando…'; btn.disabled = true; btn.style.opacity = '.7';
+    btn.textContent = 'Verificando…'; btn.disabled = true; btn.style.opacity = '.7';
+    var check = await sb.from('allowed_emails').select('email').eq('email', email).maybeSingle();
+    if (!check.data) {
+      msg.style.color = '#ef4444';
+      msg.textContent = '⛔ Email não autorizado. Solicite acesso ao administrador.';
+      btn.textContent = 'Enviar link de acesso'; btn.disabled = false; btn.style.opacity = '1';
+      return;
+    }
+    btn.textContent = 'Enviando…';
     var r = await sb.auth.signInWithOtp({ email: email, options: { emailRedirectTo: REDIRECT } });
     if (r.error) {
       msg.style.color = '#ef4444'; msg.textContent = r.error.message;
